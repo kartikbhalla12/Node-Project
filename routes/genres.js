@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const express = require('express');
 const router = express.Router();
-const Genre = require('./../models/Genres')
+const Genre = require('../models/Genre')
 
 
 router.get('/', async (req, res) => {

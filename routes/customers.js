@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
-const Customer = require('./../models/Customers')
+const Customer = require('../models/Customer')
 
 router.get('/', async (req, res) => {
     let customers = await Customer.find();
