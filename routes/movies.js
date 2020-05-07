@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const express = require('express');
+const auth = require('../middleware/auth')
 const router = express.Router();
 const { Movie, validate } = require('../models/Movie');
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) =>{
+router.post('/', auth, async (req, res) =>{
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     try {
@@ -37,16 +38,5 @@ router.post('/', async (req, res) =>{
 
 })
 
-
-
-// function validateMovie(movie) {
-//     const validatesSchema = {
-//         title: Joi.string().min(3).required(),
-//         genre: Joi.objectId().required(),
-//         numberInStock: Joi.number().required(),
-//         dailyRentalRate: Joi.number().required(),
-//     }
-//     return Joi.validate(movie, validatesSchema);
-// }
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
+const auth = require('../middleware/auth')
 const Customer = require('../models/Customer')
 
 router.get('/', async (req, res) => {
@@ -8,7 +9,7 @@ router.get('/', async (req, res) => {
     res.send(customers)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     let customer = new Customer({
         name: req.body.name,
         isGold: req.body.isGold,
