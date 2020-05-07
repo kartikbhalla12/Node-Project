@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
-const Movie = require('../models/Movie');
+const { Movie, validate } = require('../models/Movie');
 
 
 router.get('/', async (req, res) => {
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) =>{
-    const { error } = validateMovie(req.body);
+    const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     try {
         const movie = new Movie({
@@ -39,14 +39,14 @@ router.post('/', async (req, res) =>{
 
 
 
-function validateMovie(movie) {
-    const validatesSchema = {
-        title: Joi.string().min(3).required(),
-        genre: Joi.objectId().required(),
-        numberInStock: Joi.number().required(),
-        dailyRentalRate: Joi.number().required(),
-    }
-    return Joi.validate(movie, validatesSchema);
-}
+// function validateMovie(movie) {
+//     const validatesSchema = {
+//         title: Joi.string().min(3).required(),
+//         genre: Joi.objectId().required(),
+//         numberInStock: Joi.number().required(),
+//         dailyRentalRate: Joi.number().required(),
+//     }
+//     return Joi.validate(movie, validatesSchema);
+// }
 
 module.exports = router;

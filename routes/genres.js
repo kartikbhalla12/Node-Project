@@ -1,7 +1,6 @@
-const Joi = require('joi')
 const express = require('express');
 const router = express.Router();
-const Genre = require('../models/Genre')
+const { Genre, validate } = require('../models/Genre')
 
 
 router.get('/', async (req, res) => {
@@ -27,7 +26,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { error } = validateGenre(req.body);
+    const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
     try {
     let genre = new Genre({
@@ -43,7 +42,7 @@ router.post('/', async (req, res) => {
 
 
 router.put('/:id', async (req, res) => {
-    const { error } = validateGenre(req.body);
+    const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
     try {
         let genre = await Genre.findByIdAndUpdate(req.params.id, {
@@ -70,16 +69,6 @@ router.delete('/:id', async (req, res) => {
         res.send(ex);
     }
 })
-
-
-
-
-function validateGenre(genre) {
-    const validatesSchema = {
-        name: Joi.string().min(5).required(),
-    }
-    return Joi.validate(genre, validatesSchema);
-}
 
 
 module.exports = router;

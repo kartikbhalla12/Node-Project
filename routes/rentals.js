@@ -1,10 +1,8 @@
-const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
-const Rental = require('../models/Rental');
+const { Rental, validate } = require('../models/Rental');
 const Customer = require('../models/Customer')
 const Movie = require('../models/Movie');
-Joi.objectId = require('joi-objectid')(Joi);
 const Fawn = require('fawn');
 const mongoose = require('mongoose');
 Fawn.init(mongoose);
@@ -22,7 +20,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { error } = validateRental(req.body);
+    const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
     const customer = await Customer.findById(req.body.customer);
@@ -61,17 +59,6 @@ router.post('/', async (req, res) => {
 })
 
 
-function validateRental(rental) {
-    const validateSchema = {
-        customer: Joi.objectId().required(),
-        movie: Joi.objectId().required(),
-        // dateOut: Joi.date(),
-        // dateReturned: Joi.date(),
-        // rentalFee: Joi.number()
-    }
-
-    return Joi.validate(rental, validateSchema);
-}
 
 
 module.exports = router
