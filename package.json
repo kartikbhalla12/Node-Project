@@ -23,5 +23,8 @@
     "morgan": "^1.10.0",
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
   }
 }
