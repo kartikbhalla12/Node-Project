@@ -20,21 +20,14 @@ router.get('/', async (req, res) => {
 router.post('/', auth, async (req, res) =>{
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-    try {
-        const movie = new Movie({
-            title: req.body.title,
-            genre: req.body.genre,
-            numberInStock: req.body.numberInStock,
-            dailyRentalRate: req.body.dailyRentalRate
-        });
-        const result = await movie.save();
-        res.send(result);
-    }
-
-    catch (ex) {
-        res.send(ex);
-    }
-
+    const movie = new Movie({
+        title: req.body.title,
+        genre: req.body.genre,
+        numberInStock: req.body.numberInStock,
+        dailyRentalRate: req.body.dailyRentalRate
+    });
+    const result = await movie.save();
+    res.send(result);
 
 })
 

@@ -9,15 +9,10 @@ const mongoose = require('mongoose');
 Fawn.init(mongoose);
 
 router.get('/', async (req, res) => {
-    try {
-        const rentals = await Rental
-        .find()
-        .populate('movie customer')
-        res.send(rentals)
-    }
-    catch (ex) {
-        res.send(ex)
-    }
+    const rentals = await Rental
+    .find()
+    .populate('movie customer')
+    res.send(rentals)
 })
 
 router.post('/', auth, async (req, res) => {

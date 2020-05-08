@@ -20,14 +20,9 @@ router.post('/', auth, async (req, res) => {
 
     user.password = hashed;
     
-    try {
-        await user.save();
-        const token = user.generateToken();
-        res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']))
-    }
-    catch (ex) {
-        res.send(ex);
-    }
+    await user.save();
+    const token = user.generateToken();
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']))
 
 })
 
