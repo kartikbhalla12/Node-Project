@@ -7,15 +7,15 @@ const mongoose = require('mongoose')
 
 describe('User.generateAuthToken', () => {
     it('should return a valid JWT', () => {
-        const id = new mongoose.Types.ObjectId();
+        const id = new mongoose.Types.ObjectId(); 
         const user = new User({
-            _id: id,
+            _id: id,  // cannot give a normal integer as id is of ObjectId type.
             isAdmin: true
         })
         const token = user.generateToken();
-        const decoded = jwt.verify(token, config.get('jwtPrivateKey')); //config needs a test.json for Jest 
+        const decoded = jwt.verify(token, config.get('jwtPrivateKey')); //config needs a test.json for Jest.
         expect(decoded).toMatchObject({
-            _id: id.toHexString(),  //JWT converts objectId to HEX
+            _id: id.toHexString(),  //JWT converts objectId to HEX.
             isAdmin: true
         })
     })
