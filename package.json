@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch-all"
+    "test": "jest --watch-all --coverage --runInBand --detectOpenHandles --forceExit  "
   },
   "keywords": [],
   "author": "",
@@ -24,7 +24,11 @@
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.1"
   },
+  "jest": {
+      "testEnvironment": "node"
+  },
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
   }
 }
