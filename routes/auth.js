@@ -5,11 +5,10 @@ const { Auth, validate } = require('../models/Auth');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 
+const validateBody = require('../middleware/validate');
 
-router.post('/', async (req, res) => {
-    const { error } = validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
-    
+router.post('/', validateBody(validate), async (req, res) => {
+
     let user = await User.findOne({email: req.body.email});
     if(!user) return res.status(400).send('Invalid username or password..');
 

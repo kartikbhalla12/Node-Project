@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch-all --coverage --runInBand --detectOpenHandles --forceExit  "
+    "test": "jest --watch-all --coverage --runInBand --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "",
@@ -19,13 +19,14 @@
     "joi-objectid": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "moment": "^2.25.3",
     "mongoose": "^5.9.12",
     "morgan": "^1.10.0",
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.1"
   },
   "jest": {
-      "testEnvironment": "node"
+    "testEnvironment": "node"
   },
   "devDependencies": {
     "jest": "^26.0.1",

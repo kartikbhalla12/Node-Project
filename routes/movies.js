@@ -4,6 +4,7 @@ const auth = require('../middleware/auth')
 const router = express.Router();
 const { Movie, validate } = require('../models/Movie');
 
+const validateBody = require('../middleware/validate');
 
 router.get('/', async (req, res) => {
     try {
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', auth, async (req, res) =>{
+router.post('/', [auth, validateBody(validate) ], async (req, res) =>{
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     const movie = new Movie({

@@ -3,10 +3,12 @@ const router = express.Router();
 const auth = require('../middleware/auth')
 const { Rental, validate } = require('../models/Rental');
 const Customer = require('../models/Customer')
-const Movie = require('../models/Movie');
+const { Movie } = require('../models/Movie');
 const Fawn = require('fawn');
 const mongoose = require('mongoose');
 Fawn.init(mongoose);
+
+const validateBody = require('../middleware/validate');
 
 router.get('/', async (req, res) => {
     const rentals = await Rental
@@ -15,15 +17,13 @@ router.get('/', async (req, res) => {
     res.send(rentals)
 })
 
-router.post('/', auth, async (req, res) => {
-    const { error } = validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
+router.post('/', [auth, validateBody(validate) ], async (req, res) => {
 
     const customer = await Customer.findById(req.body.customer);
-    if(!customer) return res.status(404).send("Invalid Customer ID...")
+    if(!customer) return res.status(404).send("Customer not found for the given id.")
 
     const movie = await Movie.findById(req.body.movie);
-    if(!movie) return res.status(404).send("Invalid Movie ID...")
+    if(!movie) return res.status(404).send("Movie not found for the given id.")
 
     if(movie.numberInStock == 0) return res.status(400).send("Movie out of stock..")
     const rental = new Rental({
@@ -31,7 +31,7 @@ router.post('/', auth, async (req, res) => {
         movie: req.body.movie,
         // dateOut: req.body.dateOut,
         // dateReturned: req.body.dateReturned,
-        rentalFee: movie.dailyRentalRate
+        // rentalFee: movie.dailyRentalRate
 
     })
 
@@ -57,4 +57,4 @@ router.post('/', auth, async (req, res) => {
 
 
 
-module.exports = router
+module.exports = router;

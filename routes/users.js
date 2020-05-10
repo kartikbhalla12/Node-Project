@@ -5,8 +5,11 @@ const { User, validate } = require('../models/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 
+const validateBody = require('../middleware/validate');
 
-router.post('/', auth, async (req, res) => {
+
+
+router.post('/', [auth, validateBody(validate) ], async (req, res) => {
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
     
