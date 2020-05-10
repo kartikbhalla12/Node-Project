@@ -29,8 +29,7 @@ const rentalSchema = new mongoose.Schema({
 rentalSchema.statics.lookup = function(movie, customer) {
     return this.findOne({
         movie : movie,
-        customer: customer,
-        dateReturned: null
+        customer: customer
     })
 }
 
