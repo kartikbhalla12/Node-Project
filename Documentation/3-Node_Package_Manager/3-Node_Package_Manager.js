@@ -12,6 +12,10 @@ Installing NPM
 
         npm -v
 
+    To initialize npm package.json in your application, run
+        
+        npm init --yes
+
 
 Installing a NPM Package
 
