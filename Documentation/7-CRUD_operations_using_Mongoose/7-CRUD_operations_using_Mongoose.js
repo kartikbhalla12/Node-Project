@@ -433,12 +433,17 @@ Updating a Document
             updateCourse(5eb54eb8eb75243dfcfd8ff8)
 
 
+Removing a Document
 
+    In order to delete a document, we can either use deleteOne or findOneAndDelete. To get the deleted document we use findOneAndDelete
 
+        async function deleteCourse(id) {
+            const course = await Course.findOneAndDelete({_id: id})
 
+            console.log(course)
+        }
 
-
-
+       deleteCourse(5eb54eb8eb75243dfcfd8ff8)
 
 
 
