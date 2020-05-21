@@ -64,7 +64,7 @@ Schemas
             author: String,
             tags: [ String ],
             date: Date,
-            isPublished: true,
+            isPublished: Boolean,
         })
 
     If we need to provide a default value, rather than passing the type in the key directly , we pass an object with two keys.
@@ -75,7 +75,7 @@ Schemas
             author: String,
             tags: [ String ],
             date:{ type: Date, default: Date.now },
-            isPublished: true,
+            isPublished: Boolean,
         })
 
     Various types that we can use in defining schemas are,
