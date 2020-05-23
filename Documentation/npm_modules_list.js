@@ -4,9 +4,10 @@ mongoose
 underscore (lodash)
 express
 nodemon
-Joi
-Joi-objectid
-Fawn (depreciated)
+joi
+joi-objectid
+fawn (depreciated)
+lodash
 
 helmet
 morgan
@@ -15,5 +16,8 @@ config / rc
 debug
 pug / moustache / ejs
 
+
+bcrypt
+jsonwebtoken
 
 */
