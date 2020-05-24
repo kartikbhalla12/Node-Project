@@ -20,4 +20,9 @@ pug / moustache / ejs
 bcrypt
 jsonwebtoken
 
+
+express-async-errors
+winston
+winston-mongodb
+
 */
