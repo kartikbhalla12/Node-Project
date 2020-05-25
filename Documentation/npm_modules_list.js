@@ -25,4 +25,7 @@ express-async-errors
 winston
 winston-mongodb
 
+
+jest
+
 */

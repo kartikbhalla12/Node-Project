@@ -197,7 +197,7 @@ Logging Errors
 
         const winston = require('winston')
 
-    Winston has a default logger which we can use to log our errors, but we can also create our custom logger, but thats not required everytime. This logger object
+    Winston has a default logger which we can use to log our errors, but we can also create our custom logger, but thats not required everytime.
     First we need has what we call a transport. A transport is essentially a storage device for our logs. winston comes with some core transports
 
         Console, for logging messages in console
