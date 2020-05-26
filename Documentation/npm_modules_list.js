@@ -28,4 +28,7 @@ winston-mongodb
 
 jest
 
+supertest
+
+
 */
