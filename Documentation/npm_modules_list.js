@@ -26,7 +26,8 @@ winston
 winston-mongodb
 
 
-jest
+jest 
+@types/jest (for intellisense)
 
 supertest
 

@@ -33,6 +33,7 @@ Benefits of Automated Testing
 
         Focus more on quality, we make sure every method works with different inputs under varying circumstances 
 
+
 Types of Tests
 
     There are three types of tests
@@ -91,6 +92,7 @@ Tooling
         },
 
     now we can run 'npm test' on the console to run all the tests
+
 
 Writing a unit test
 
@@ -742,9 +744,9 @@ Testing Exceptions
 Continuously Running Tests
 
     Running these tests, using npm everytime is tedious. There is a way by which we can run these tests automatically whenever a something is updated.
-    In the 'package.json', in the scripts section, change our test command to jest --watch-all
+    In the 'package.json', in the scripts section, change our test command to jest --watchAll
 
-        "test": "jest --watch-all"
+        "test": "jest --watchAll"
 
     Now as soon as any file is updated, jest will run all the tests again
 
@@ -920,6 +922,7 @@ Interaction Testing
         Snapshots:   0 total
         Time:        0.562 s, estimated 1 s
 
+        
 Jest Mockup Functions
 
     Now, while the above approach is perfectly fine, declaring a boolean and then expecting it is kind of messy, So in jest, we have a method
