@@ -26,10 +26,11 @@ winston
 winston-mongodb
 
 
-jest 
-@types/jest (for intellisense)
+jest - for testing application code
+@types/jest - for jest intellisense
 
-supertest
+supertest - for working with endpoints
 
+moment - working with dates and times
 
 */
